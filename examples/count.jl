@@ -1,13 +1,31 @@
 ######################################################################
 # counting various spell types
 ######################################################################
-using AMDB 
-using DataStructures
+using AMDB
+# you may need to Pkg.add these...
+using DataStructures            
+using GZip
+using UnicodePlots
 
-@time rc = open(deserialize, "/tmp/test.serialized", "r")
+# you only need to read the data once per session
+records = GZip.open(deserialize, "/Data/AMDB/subsample/AMDB_subsample.jls.gz", "r")
 
-c = counter(Int)
-for (id,record) in records
-    push!(c, length(record.AMP_spells))
+"""
+Demo for counting the distribution of the number of person spells.
+"""
+function count_person_lengths(records)
+    c = counter(Int)
+    for (id,record) in records
+        push!(c, length(record.person_spells))
+    end
+    sort(collect(c), by=first)
 end
-counts = sort(collect(c), by=first)
+
+count_person_lengths(records)   # looks sensible
+
+# a plot for the number of AMP spells
+UnicodePlots.histogram(filter(l->l ≤ 100,
+                              [length(r.AMP_spells) for (_,r) in records]))
+
+# which individuals have above 1000 spells?
+filter((_,r) -> length(r.AMP_spells) > 1000, records)
