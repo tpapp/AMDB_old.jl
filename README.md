@@ -8,8 +8,7 @@
 
 Preliminary code for working with the AMDB data using a compact binary dump (instead of SQL or similar).
 
-To use on `marvin`, please add the following line to your `.juliarc.jl`:
-
+No releases, not published into `METADATA`. You need to install it with
 ```julia
-push!(LOAD_PATH, "/Data/AMDB/AMDB.jl")
+Pkg.clone("https://github.com/tpapp/AMDB.jl")
 ```
