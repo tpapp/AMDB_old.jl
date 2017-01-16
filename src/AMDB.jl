@@ -3,12 +3,14 @@ module AMDB
 using IntervalSets
 using AutoHashEquals
 import Libz
+import GZip
 
 export
     # utilities
     process_compressed_database,
     below_maxiter,
     random_push!,
+    deserialize_gz,
     # codes
     AMP,
     VMZ,

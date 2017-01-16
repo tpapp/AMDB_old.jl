@@ -87,3 +87,9 @@ function Base.readlines(f::Function, io::IO, maxiter = Nullable{Int}())
         i += 1
     end
 end
+
+
+"""
+Read from the gzip-compressed `path`, and return the deserialied contents.
+"""
+deserialize_gz(path::String) = GZip.open(deserialize, path, "r")
