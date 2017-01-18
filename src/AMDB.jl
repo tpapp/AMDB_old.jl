@@ -33,7 +33,8 @@ export
     # reading
     read_person_spells!,
     read_AMP_spells!,
-    read_VMZ_spells!
+    read_VMZ_spells!,
+    traverse_AMP_spells
 
 include("utilities.jl")
 include("AMP_codes.jl")
@@ -41,5 +42,6 @@ include("VMZ_codes.jl")
 include("parsing.jl")
 include("types.jl")
 include("reading.jl")
+include("analysis.jl")
 
 end # module
