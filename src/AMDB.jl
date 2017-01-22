@@ -2,6 +2,7 @@ module AMDB
 
 using IntervalSets
 using AutoHashEquals
+using DataStructures: Accumulator
 import Libz
 import GZip
 

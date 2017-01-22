@@ -93,3 +93,10 @@ end
 Read from the gzip-compressed `path`, and return the deserialied contents.
 """
 deserialize_gz(path::String) = GZip.open(deserialize, path, "r")
+
+# NOTE until the following issue is fixed:
+# https://github.com/JuliaLang/DataStructures.jl/issues/259
+function Base.normalize{T,V}(acc::Accumulator{T,V}, p=1)
+    _norm = norm(collect(values(acc)), p)
+    Dict(key => value/_norm for (key,value) in acc.map)
+end
